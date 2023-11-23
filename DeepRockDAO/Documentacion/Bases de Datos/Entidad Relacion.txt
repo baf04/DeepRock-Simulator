@@ -1,0 +1,46 @@
+Table Amigos {
+  id_usuario integer [primary key]
+  id_amigo integer [primary key]
+}
+
+Table Usuarios {
+  id integer [primary key]
+  correo varchar 
+  password varchar
+}
+
+Table Perfil {
+  id integer [primary key]
+  id_to_usuarios integer [primary key]
+  Nombre varchar
+  Exp integer
+  Creditos integer
+}
+
+Table Mineros {
+  id_to_perfil integer [primary key]
+  Exp integer
+  Clase varchar [primary key]
+  Mejoras integer
+  
+}
+
+Table Historial {
+  id_to_perfil integer [primary key]
+  id integer [primary key]
+  Dificultad varchar
+  Clase varchar
+  Creditos integer
+  ExperienciaPerfil integer
+  ExperienciaMinero integer
+  Resultado varchar
+}
+
+Ref: Amigos.id_usuario > Usuarios.id
+Ref: Amigos.id_amigo > Usuarios.id
+
+Ref: Historial.id_to_perfil > Perfil.id
+
+Ref: Perfil.id_to_usuarios > Usuarios.id
+
+Ref: Mineros.id_to_perfil > Perfil.id

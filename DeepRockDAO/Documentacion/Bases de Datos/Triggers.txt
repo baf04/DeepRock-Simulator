@@ -1,0 +1,28 @@
+Trigger Partida
+
+DELIMITER //
+CREATE TRIGGER after_insert_usuario
+AFTER INSERT ON usuarios
+FOR EACH ROW
+BEGIN
+  INSERT INTO partida(id,id_to_usuarios,Nombre,Exp,Creditos)
+  VALUES ('', NEW.id, 'partida 1', 0 , 1000),
+         ('', NEW.id, 'partida 2', 0, 1000),
+         ('', NEW.id, 'partida 3', 0, 1000);
+END //
+DELIMITER ;
+
+Trigger Mineros
+
+DELIMITER //
+CREATE TRIGGER after_insert_partida
+AFTER INSERT ON partida
+FOR EACH ROW
+BEGIN
+  INSERT INTO Mineros (id_to_Partida, Exp, Clase, Mejoras)
+  VALUES (NEW.id, 1, 'Taladrador', 0),
+         (NEW.id, 1, 'Artillero', 0),
+         (NEW.id, 1, 'Ingeniero', 0),
+         (NEW.id, 1, 'Explorador', 0);
+END //
+DELIMITER ;
